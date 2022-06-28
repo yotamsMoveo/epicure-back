@@ -1,10 +1,9 @@
-//const { boolean } = require("joi");
-import mongoose, { model, Schema } from "mongoose";
+import { model, Schema } from "mongoose";
 export interface IChef {
   name: string;
   image: string;
   description: string;
-  active:boolean;
+  active: boolean;
 }
 const ChefSchema = new Schema<IChef>(
   {
@@ -20,6 +19,6 @@ const ChefSchema = new Schema<IChef>(
   { collection: "Chefs" }
 );
 
-const ChefModel = model<IChef>("Chefs", ChefSchema)
+const ChefModel = model<IChef>("Chefs", ChefSchema);
 
 export default ChefModel;

@@ -10,14 +10,14 @@ const userHandler = {
   async findUserByCredentials(userEmail: string, userPassword: string) {
     return User.findOne({ email: userEmail })
       .select("+password")
-      .then((user: any) => {
+      .then((user) => {
         if (!user) {
           return Promise.reject(new Error("Incorrect password or email"));
         }
 
         return bcrypt
           .compare(userPassword, user.password)
-          .then((matched: any) => {
+          .then((matched:boolean) => {
             if (!matched) {
               return Promise.reject(new Error("Incorrect password or email"));
             }

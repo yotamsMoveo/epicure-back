@@ -1,6 +1,6 @@
 import chefsRouter from "../Routers/chefsRouter";
 import restaurantHandler from "./restaurantsHandler"; 
-import ChefsModel from "../Schemes/ChefSchema";
+import ChefsModel, { IChef } from "../Schemes/ChefSchema";
 import RestaurantModel from "../Schemes/RestaurantSchema";
 import DishModel from "../Schemes/DishSchema";
 
@@ -9,7 +9,7 @@ const chefHandler = {
     return ChefsModel.find({ active: true });
   },
 
-  async postChef(data: any) {
+  async postChef(data: IChef) {
     return ChefsModel.create(data);
   },
   async updateChef(chefId: string, updatedChefObject: object) {
@@ -23,16 +23,6 @@ const chefHandler = {
       { new: true }
     );
     return updateResponse;
-  },
-
-  async getAllRestaurants(chfId:string){
-    try{
-      const allRestaurants=await RestaurantModel.find({chef:chfId}).populate("signatureDish");
-      return allRestaurants;
-    }
-    catch(error){
-      console.log(error);
-    } 
   },
   
   async deleteChef(chefId:string){

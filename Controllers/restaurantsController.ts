@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import restaurantHandler from "../Handlers/restaurantsHandler";
 import restaurantsHandler from "../Handlers/restaurantsHandler";
 
 const restaurantsController = {
@@ -55,7 +56,7 @@ const restaurantsController = {
     }
   },
 
-  async getAllDishes(req:Request,res:Response){
+  async getAllDishes(req: Request, res: Response) {
     try {
       const result = await restaurantsHandler.getAllDishes(req.params.id);
       res.status(200).json({
@@ -65,6 +66,31 @@ const restaurantsController = {
     } catch (error) {
       console.log(error);
     }
-  }
+  },
+
+  async getRestaurantsByChefId(req: Request, res: Response) {
+    try {
+      const result = await restaurantHandler.getRestaurantsByChefId(req.params.id);
+      res.status(200).json({
+        statuse: "Success",
+        data: result,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  },
+  async getRestaurantsById(req: Request, res: Response) {
+    try {
+      const result = await restaurantHandler.getRestaurantsById(req.params.id);
+      res.status(200).json({
+        statuse: "Success",
+        data: result,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  },
+
+  
 };
 export default restaurantsController;

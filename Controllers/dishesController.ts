@@ -48,6 +48,20 @@ const dishesController = {
     } catch (error) {
       console.log(error);
     }
+  },
+
+  async getDishesByRestId(req:Request,res:Response){
+    try {
+      const result = await dishesHandler.getDishesByRestId(req.params.id);
+      res.status(200).json({
+        statuse: "Success",
+        data: result,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
+
+  
 };
 export default dishesController;

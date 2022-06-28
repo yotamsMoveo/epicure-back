@@ -6,7 +6,10 @@ restaurantsRouter.get("/", restaurantsController.requestRestaurantsList);
 restaurantsRouter.post("/",verifyToken, restaurantsController.requestAddRestaurant);
 restaurantsRouter.patch("/:id",verifyToken, restaurantsController.requestUpdateRestaurant);
 restaurantsRouter.delete("/:id",verifyToken, restaurantsController.requestDeleteRestaurant);
-restaurantsRouter.get("/:id", restaurantsController.getAllDishes);
+restaurantsRouter.get("/:id", restaurantsController.getRestaurantsByChefId);
+
+
+
 
 
 export default restaurantsRouter;

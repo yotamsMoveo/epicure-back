@@ -15,12 +15,12 @@ export interface IDish {
 const DishSchema = new Schema<IDish>(
   {
     name: { type: String },
-    image: { type: String, unique: true },
+    image: { type: String},
     description: { type:String},
     type: { type: String },
     price: { type:Number },
     dish_time: { type: String, require: true },
-    restaurant: { type: mongoose.Schema.Types.ObjectId, ref: "Restaurants", required: true },
+    restaurant: { type: mongoose.Schema.Types.ObjectId, ref: "Restaurants"},
     active: { type: Boolean, required: true },
   },
   { collection: "Dishes" }

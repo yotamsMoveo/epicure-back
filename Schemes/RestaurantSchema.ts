@@ -17,7 +17,7 @@ export interface IRestaurant {
 const restaurantSchema = new Schema<IRestaurant>(
   {
     name: { type: String },
-    image: { type: String, unique: true },
+    image: { type: String},
     chef: { type:mongoose.Schema.Types.ObjectId, ref: "Chefs"},
     open_hour: { type: Number },
     open_date: { type: Date, required: true },

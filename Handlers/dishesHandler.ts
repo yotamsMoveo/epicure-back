@@ -1,13 +1,12 @@
-import dishesRouter from "../Routers/dishesRouter";
-import DishModel from "../Schemes/DishSchema";
+import DishModel, { IDish } from "../Schemes/DishSchema";
 import DishesModel from "../Schemes/DishSchema";
 
-const chefHandler = {
+const dishesHandler = {
   async getDishesList() {
     return DishesModel.find({ active: true }).populate("restaurant");
   },
 
-  async postDish(data: any) {
+  async postDish(data: IDish) {
     return DishesModel.create(data);
   },
 
@@ -27,7 +26,12 @@ const chefHandler = {
   async requestDeleteDish(dishId:string){
     const dishToDelete=await DishModel.deleteOne({_id:dishId});
   }
+,
+  async getDishesByRestId(restId:string){
+    const dishes=await DishModel.find({restaurant:restId});
+    return dishes
+  }
  
 };
 
-export default chefHandler;
+export default dishesHandler;

@@ -11,8 +11,7 @@ const userController = {
       const { email, password } = req.body;
 
       const encryptedPassword = await bcrypt.hash(password, 10);
-      const newUser: any = await userHandler.addUser(email, encryptedPassword);
-      console.log(newUser);
+      const newUser: IUsers = await userHandler.addUser(email, encryptedPassword);
       if (newUser) {
         res.send(newUser);
       }
@@ -25,10 +24,8 @@ const userController = {
     const { email, password } = req.body;
     return userHandler
       .findUserByCredentials(email, password)
-      .then((user:any) => {
-        console.log(user);
+      .then((user) => {
         if (user) {
-          console.log(user);
           const token = jwt.sign(
             { _id: user._id },
             NODE_ENV === "production" ? JWT_SECRET : "dev-secret",
@@ -44,7 +41,7 @@ const userController = {
       })
       .catch(next);
   },
-  
+
   async getAllUsers(req:Request,res:Response){
     try {
         const result = await userHandler.getAllUsers();

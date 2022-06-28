@@ -1,13 +1,13 @@
 import chefsRouter from "../Routers/chefsRouter";
 import DishModel from "../Schemes/DishSchema";
-import RestaurantModel from "../Schemes/RestaurantSchema";
+import RestaurantModel, { IRestaurant } from "../Schemes/RestaurantSchema";
 
 const restaurantHandler = {
   async getRestaurantsList() {
     return RestaurantModel.find({ active: true });
   },
 
-  async postRestaurant(data: any) {
+  async postRestaurant(data: IRestaurant) {
     return RestaurantModel.create(data);
   },
 
@@ -42,7 +42,29 @@ const restaurantHandler = {
     catch(error){
       console.log(error);
     } 
-  }
+  },
+
+  async getRestaurantsByChefId(chefId:string){
+    try{
+      const allRestaurants=await RestaurantModel.find({chef:chefId}).populate("signatureDish");
+      return allRestaurants;
+    }
+    catch(error){
+      console.log(error);
+    } 
+  },
+
+  async getRestaurantsById(restId:string){
+    try{
+      const res=await RestaurantModel.find({_id:restId}).populate("signatureDish");
+      return res;
+    }
+    catch(error){
+      console.log(error);
+    } 
+  },
+
+  
 };
 
 export default restaurantHandler;

@@ -6,5 +6,5 @@ dishesRouter.get("/", dishesController.requestDishesList);
 dishesRouter.post("/",verifyToken, dishesController.requestAddDish);
 dishesRouter.patch("/:id",verifyToken, dishesController.requestUpdateDish);
 dishesRouter.delete("/:id",verifyToken, dishesController.requestDeleteDish);
-
+dishesRouter.get("/:id", dishesController.getDishesByRestId);
 export default dishesRouter;
