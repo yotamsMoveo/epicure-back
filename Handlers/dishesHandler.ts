@@ -6,18 +6,15 @@ const dishesHandler = {
     return DishesModel.find({ active: true }).populate("restaurant");
   },
 
-  async postDish(data: IDish) {
-    return DishesModel.create(data);
+  async postDish(data: any) {
+    console.log(data);
+    return DishesModel.create(data.dishDataTOAdd);
   },
 
-  async updateDish(dishId: string, updatedDishObject:object) {
-    const updateDish = {
-      _id: dishId,
-      ...updatedDishObject,
-    };
+  async updateDish(dishId: string, updatedDishObject:any) {
     const updateResponse = await DishModel.findByIdAndUpdate(
-      { _id: dishId },
-      updateDish,
+      dishId ,
+      updatedDishObject.dishDataTOUpdate,
       { new: true }
     );
     return updateResponse;

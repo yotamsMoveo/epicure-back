@@ -19,9 +19,9 @@ const DishSchema = new Schema<IDish>(
     description: { type:String},
     type: { type: String },
     price: { type:Number },
-    dish_time: { type: String, require: true },
+    dish_time: { type: String},
     restaurant: { type: mongoose.Schema.Types.ObjectId, ref: "Restaurants"},
-    active: { type: Boolean, required: true },
+    active: { type: Boolean },
   },
   { collection: "Dishes" }
 );
