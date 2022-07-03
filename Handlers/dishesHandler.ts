@@ -7,7 +7,6 @@ const dishesHandler = {
   },
 
   async postDish(data: any) {
-    console.log(data);
     return DishesModel.create(data.dishDataTOAdd);
   },
 

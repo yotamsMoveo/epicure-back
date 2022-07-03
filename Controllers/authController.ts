@@ -8,10 +8,9 @@ const { NODE_ENV, JWT_SECRET } = process.env;
 const userController = {
   async register(req: Request, res: Response) {
     try {
-      const { email, password } = req.body;
-
+      const { email, password ,name} = req.body.userData.user;
       const encryptedPassword = await bcrypt.hash(password, 10);
-      const newUser: IUsers = await userHandler.addUser(email, encryptedPassword);
+      const newUser: IUsers = await userHandler.addUser(email, encryptedPassword,name);
       if (newUser) {
         res.send(newUser);
       }
@@ -21,7 +20,7 @@ const userController = {
   },
 
   async login(req: Request, res: Response, next: NextFunction) {
-    const { email, password } = req.body;
+    const { email, password } = req.body.userData.user;
     return userHandler
       .findUserByCredentials(email, password)
       .then((user) => {

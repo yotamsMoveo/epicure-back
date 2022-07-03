@@ -12,6 +12,7 @@ const userValidation = {
 
   async varifyRegister(req: Request, res: Response, next: NextFunction) {
     const { name, email, password } = req.body;
+    
   
     if (!(email && password && name)) {
       res.status(400).send("All input is required");

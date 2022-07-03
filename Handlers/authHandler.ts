@@ -3,8 +3,8 @@ import User, { IUsers } from "../Schemes/UserSchema";
 const bcrypt = require("bcryptjs");
 
 const userHandler = {
-  async addUser(email: string, password: string) {
-    return User.create({ email, password });
+  async addUser(email: string, password: string,name:string) {
+    return User.create({ email, password ,name});
   },
 
   async findUserByCredentials(userEmail: string, userPassword: string) {
