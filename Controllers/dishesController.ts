@@ -22,7 +22,10 @@ const dishesController = {
         data: result,
       });
     } catch (error) {
-      console.log(error);
+      res.status(403).json({
+        status:"Faild",
+        data:error
+      })
     }
   },
 
@@ -30,7 +33,7 @@ const dishesController = {
     try {
       const result = await dishesHandler.updateDish(req.params.id, req.body);
       res.status(200).json({
-        statuse: "Success",
+        status: "Success",
         data: result,
       });
     } catch (error) {

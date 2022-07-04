@@ -14,14 +14,15 @@ export interface IDish {
 
 const DishSchema = new Schema<IDish>(
   {
-    name: { type: String },
-    image: { type: String},
-    description: { type:String},
-    type: { type: String },
-    price: { type:Number },
-    dish_time: { type: String},
-    restaurant: { type: mongoose.Schema.Types.ObjectId, ref: "Restaurants"},
-    active: { type: Boolean },
+    name: { type: String ,unique:false},
+    image: { type: String,unique:false},
+    description: { type:String ,unique:false},
+    type: { type: String ,unique:false},
+    price: { type:Number ,unique:false},
+    dish_time: { type: String,unique:false},
+    restaurant: { type: mongoose.Schema.Types.ObjectId, ref: "Restaurants",unique:false},
+    active: { type: Boolean,default:true },
+    
   },
   { collection: "Dishes" }
 );
