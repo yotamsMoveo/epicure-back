@@ -11,6 +11,7 @@ const dishesHandler = {
   },
 
   async updateDish(dishId: string, updatedDishObject:any) {
+  
     const updateResponse = await DishModel.findByIdAndUpdate(
       dishId ,
       updatedDishObject.dishDataTOUpdate,
@@ -24,7 +25,7 @@ const dishesHandler = {
   }
 ,
   async getDishesByRestId(restId:string){
-    const dishes=await DishModel.find({restaurant:restId});
+    const dishes=await DishModel.find({restaurant:restId,active:true});
     return dishes
   }
  
