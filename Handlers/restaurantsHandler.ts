@@ -4,7 +4,7 @@ import RestaurantModel, { IRestaurant } from "../Schemes/RestaurantSchema";
 
 const restaurantHandler = {
   async getRestaurantsList() {
-    return RestaurantModel.find({ active: true });
+    return RestaurantModel.find({ active: true }).populate("chef");
   },
 
   async postRestaurant(data: IRestaurant) {
@@ -46,7 +46,7 @@ const restaurantHandler = {
 
   async getRestaurantsByChefId(chefId:string){
     try{
-      const allRestaurants=await RestaurantModel.find({chef:chefId}).populate("signatureDish");
+      const allRestaurants=await RestaurantModel.find({chef:chefId}).populate("chef");
       return allRestaurants;
     }
     catch(error){
@@ -56,7 +56,7 @@ const restaurantHandler = {
 
   async getRestaurantsById(restId:string){
     try{
-      const res=await RestaurantModel.find({_id:restId}).populate("signatureDish");
+      const res=await RestaurantModel.find({_id:restId}).populate("chef");
       return res;
     }
     catch(error){
