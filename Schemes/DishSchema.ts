@@ -7,7 +7,7 @@ export interface IDish {
   description: string;
   type: string[];
   price:number;
-  dish_time:string;
+  dish_time:string[];
   restaurant:IRestaurant;
   active:boolean;
 }
@@ -19,7 +19,7 @@ const DishSchema = new Schema<IDish>(
     description: { type:String ,unique:false},
     type: [{ type: String ,unique:false}],
     price: { type:Number ,unique:false},
-    dish_time: { type: String,unique:false},
+    dish_time: [{ type: String,unique:false}],
     restaurant: { type: mongoose.Schema.Types.ObjectId, ref: "Restaurants",unique:false},
     active: { type: Boolean,default:true },
     
