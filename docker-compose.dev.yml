@@ -1,0 +1,16 @@
+version: "3"
+services:
+  epicure-back:
+    build:
+      context: .
+      args: 
+        NODE_ENV: development
+      dockerfile: Dockerfile
+      target: base
+    volumes:
+      # - .src/:/app/src
+      - ./nodemon.json:/app/nodemon.json
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    command: npm run dev

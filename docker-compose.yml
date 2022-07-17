@@ -1,0 +1,41 @@
+version: "3.7"
+services:
+  epicure-back:
+    build: .
+    ports: 
+      - "4000:4000"
+    expose:
+      - '4000'
+    depends_on: 
+      - mongo
+      
+  mongo:
+    image: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=Solika1234
+    volumes:
+      - mongo-db:/data/db
+    # environment:
+    #   - PORT=4000
+
+# version: '3.7'
+
+# services:
+#   ts-node-docker:
+#     build:
+#       context: .
+#       dockerfile: Dockerfile
+#       target: base
+#     volumes:
+#       - ./src:/app/src
+#       - ./nodemon.json:/app/nodemon.json
+#     container_name: ts-node-docker
+#     expose:
+#       - '4000'
+#     ports:
+#       - '4000:4000'
+#     command: npm run dev
+
+volumes:
+  mongo-db:
