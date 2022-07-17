@@ -4,6 +4,7 @@ import restaurantsHandler from "../Handlers/restaurantsHandler";
 
 const restaurantsController = {
   async requestRestaurantsList(req: Request, res: Response) {
+    console.log("yotam the king");
     try {
       const result = await restaurantsHandler.getRestaurantsList();
       res.status(200).json({
